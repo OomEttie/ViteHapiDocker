@@ -1,0 +1,28 @@
+services:
+  caddy:
+    image: caddy:latest
+    ports:
+      - 3000:3000
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+
+  ui:
+    image: node:15.8-alpine
+    volumes:
+      - ./ui:/usr/src/app
+    # ports:
+    #   - 3000:3000
+    command: yarn --cwd /usr/src/app run dev
+    depends_on:
+      - caddy
+
+  hapi:
+    image: node:15.8-alpine
+    volumes:
+      - ./hapi:/usr/src/app
+      - /usr/src/app/build/
+    # ports:
+    #   - 5000:5000
+    command: yarn --cwd /usr/src/app run dev
+    depends_on:
+      - caddy

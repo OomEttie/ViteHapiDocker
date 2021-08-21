@@ -1,0 +1,1 @@
+export const dataperson = [ { name: "person1" }, { name: "person2" } ];

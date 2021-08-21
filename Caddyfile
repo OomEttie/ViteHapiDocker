@@ -1,0 +1,7 @@
+http://localhost:3000 {
+
+	reverse_proxy /api/* hapi:5000
+
+	reverse_proxy ui:3000
+
+}

@@ -1,0 +1,9 @@
+services:
+  web:
+    image: node:15.8-alpine
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/build/
+    ports:
+      - 3000:3000
+    command: yarn --cwd /usr/src/app run dev
